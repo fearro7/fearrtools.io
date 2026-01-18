@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FEARR - FPS BOOST</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-text">FEARR</span>
+            <span class="logo-sub">ADVANCED TOOLS</span>
+        </div>
+
+        <nav class="nav-right">
+            <a href="index.html">HOME</a>
+            <a href="crack.html">CRACK</a>
+            <a href="fps.html">FPS BOOST</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero category-hero">
+            <h1>FPS BOOST SECTION</h1>
+            <p class="subtitle">Tools & Tweaks for Max Performance Only Safe Tweaks, Nothing Is Dangerous For Your PC.</p>
+            <div class="glow-line"></div>
+        </section>
+
+        <section class="fps-content">
+            <div class="boosts-grid" id="boosts-grid">
+                <!-- 10 placeholders for FPS boosts (clickable to dedicated pages) -->
+                <!-- Add thumbnails in assets/ and real links/content later -->
+                <a href="boost1.html" class="boost-card">
+                    <img src="images/logo1.jpg" alt="Boost 1" class="boost-thumb">
+                    <div class="boost-info">
+                        <h3>BASIC FPS BOOST</h3>
+                        <p>Improve FPS •  Reduce Latency</p>
+                    </div>
+                </a>
+                <a href="boost2.html" class="boost-card">
+                    <img src="images/logo2.jpg" alt="Boost 2" class="boost-thumb">
+                    <div class="boost-info">
+                        <h3>ADVANCED FPS BOOST</h3>
+                        <p>System Optimization • Low-End PCs</p>
+                    </div>
+                </a>
+                <!-- Repeat up to 10 (or more for pagination) -->
+                <a href="boost3.html" class="boost-card">
+                    <img src="images/logo4.jpg" alt="Boost 3" class="boost-thumb">
+                    <div class="boost-info">
+                        <h3>EXTREME FPS BOOST</h3>
+                        <p>Extreme FPS Boost • Low-End PCs</p>
+                    </div>
+                </a>
+                <!-- ... Add 7 more similar <a class="boost-card"> blocks here ... -->
+            </div>
+
+            <div class="pagination" id="pagination">
+                <!-- JS generates page buttons -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 FEARR – All rights reserved</p>
+    </footer>
+
+    <script>
+        // Pagination JS (10 items per page, same as CRACK)
+        const itemsPerPage = 10;
+        const grid = document.getElementById('boosts-grid');
+        const pagination = document.getElementById('pagination');
+        const items = grid.querySelectorAll('.boost-card');
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+
+        function showPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            items.forEach((item, index) => {
+                item.style.display = (index >= start && index < end) ? 'block' : 'none';
+            });
+        }
+
+        function createPagination() {
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = `Page ${i}`;
+                btn.classList.add('page-btn');
+                btn.onclick = () => showPage(i);
+                pagination.appendChild(btn);
+            }
+        }
+
+        createPagination();
+        showPage(1);
+    </script>
+</body>
+</html>

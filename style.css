@@ -1,0 +1,466 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0a0a0f;
+    color: #e0e0ff;
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Fond étoilé – version FORCÉE visible en permanence */
+body {
+    background: #0a0a0f; /* fond solide immédiat */
+    position: relative;
+}
+
+.stars-layer, .stars-layer2, .stars-layer3 {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    pointer-events: none;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    will-change: transform;
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.stars-layer {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><circle cx="4" cy="4" r="1" fill="%23ffffff"/></svg>');
+    animation: starsDrift 140s linear infinite;
+    opacity: 0.45;
+}
+
+.stars-layer2 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><circle cx="6" cy="6" r="1.1" fill="%23ffffff"/></svg>');
+    animation: starsDrift 200s linear infinite reverse;
+    opacity: 0.35;
+}
+
+.stars-layer3 {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><circle cx="8" cy="8" r="1.3" fill="%23ffffff"/></svg>');
+    animation: starsDrift 260s linear infinite;
+    opacity: 0.25;
+}
+
+@keyframes starsDrift {
+    0%   { background-position: 0 0; }
+    100% { background-position: 1200px 1200px; }
+}
+
+/* Fond noir immédiat derrière tout (pas de flash blanc) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #0a0a0f;
+    z-index: -20;
+}   
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(10, 10, 20, 0.7);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00f0ff;
+    text-shadow: 0 0 15px #00f0ff88;
+    letter-spacing: 3px;
+}
+
+.logo-sub {
+    font-size: 0.75rem;
+    color: #8888ff;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: -6px;
+}
+
+/* Menu à droite */
+.nav-right {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-right a {
+    color: #a0a0ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.nav-right a:hover {
+    color: #00f0ff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+.nav-right a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background: #00f0ff;
+    transition: width 0.3s;
+}
+
+.nav-right a:hover::after {
+    width: 100%;
+}
+
+/* Hero section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(4rem, 12vw, 8rem);
+    font-weight: 700;
+    color: #00f0ff;
+    text-shadow: 0 0 40px #00f0ff66, 0 0 80px #00f0ff33;
+    margin-bottom: 1.5rem;
+    letter-spacing: 8px;
+}
+
+.subtitle {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: #8888ff;
+    max-width: 700px;
+    margin: 1rem 0 3rem;
+    opacity: 0.9;
+}
+
+.glow-line {
+    width: 400px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+    box-shadow: 0 0 30px #00f0ff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: #555577;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header { 
+        flex-direction: column; 
+        gap: 1.2rem; 
+        padding: 1.2rem 5%; 
+    }
+    .nav-right { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 1.5rem; 
+    }
+    .hero h1 { font-size: 5rem; }
+    .glow-line { width: 280px; }
+}
+/* ABOUT page specific styles */
+.about-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.about-section h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    color: #00f0ff;
+    text-shadow: 0 0 30px #00f0ff55;
+    margin-bottom: 3rem;
+    letter-spacing: 6px;
+}
+
+.reassuring-text {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: #a0a0ff;
+    max-width: 800px;
+    line-height: 1.7;
+    margin-bottom: 4rem;
+}
+
+.reassuring-text strong {
+    color: #00f0ff;
+    text-shadow: 0 0 10px #00f0ff;
+}
+
+.discord-container {
+    margin: 2rem 0;
+}
+
+.discord-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.discord-logo {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    border: 3px solid transparent;
+}
+
+.discord-link:hover .discord-logo {
+    border-color: #00ff00;           /* Vert au hover */
+    filter: drop-shadow(0 0 20px #00ff00);
+    transform: scale(1.1);
+}
+
+.discord-text {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    color: #00f0ff;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.discord-link:hover .discord-text {
+    color: #00ff00;
+    text-shadow: 0 0 10px #00ff00;
+}
+/* CRACK category styles (inspired by cfinder.xyz/jeux) */
+.category-hero {
+    height: auto;
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+}
+
+.crack-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.game-card {
+    background: rgba(20, 20, 40, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    border-color: #00f0ff;
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25);
+}
+
+.game-thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.game-info {
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.game-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #00f0ff;
+    margin-bottom: 0.8rem;
+}
+
+.game-info p {
+    font-size: 0.95rem;
+    color: #8888ff;
+    margin-bottom: 1.2rem;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    background: linear-gradient(135deg, #ff2d95, #00f0ff);
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #00f0ff;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.page-btn {
+    padding: 0.8rem 1.6rem;
+    margin: 0 0.5rem;
+    background: rgba(20, 20, 40, 0.8);
+    border: 1px solid #00f0ff;
+    color: #00f0ff;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:hover {
+    background: #00f0ff;
+    color: #0a0a0f;
+    box-shadow: 0 0 15px #00f0ff;
+}
+/* FPS BOOST category styles (same as CRACK) */
+.fps-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.boosts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.boost-card {
+    background: rgba(20, 20, 40, 0.7);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    text-decoration: none;
+    color: inherit;
+}
+
+.boost-card:hover {
+    transform: translateY(-10px);
+    border-color: #00f0ff;
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.25);
+}
+
+.boost-thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.boost-info {
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.boost-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #00f0ff;
+    margin-bottom: 0.8rem;
+}
+
+.boost-info p {
+    font-size: 0.95rem;
+    color: #8888ff;
+    margin-bottom: 1.2rem;
+}
+/* FPS Boost detail page styles */
+.boost-details {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+    text-align: center;
+}
+
+.details-text {
+    font-size: 1.2rem;
+    color: #a0a0ff;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.details-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00f0ff33;
+}
+
+.details-video {
+    width: 100%;
+    max-height: 500px;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00f0ff33;
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #ff2d95, #00f0ff);
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+}
+
+.download-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px #00f0ff;
+}

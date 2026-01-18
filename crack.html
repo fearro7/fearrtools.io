@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>FEARR - CRACK</title>
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-text">FEARR</span>
+            <span class="logo-sub">ADVANCED TOOLS</span>
+        </div>
+
+        <nav class="nav-right">
+            <a href="index.html">HOME</a>
+            <a href="crack.html">CRACK</a>
+            <a href="fps.html">FPS BOOST</a>
+            <a href="about.html">ABOUT</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero category-hero">
+            <h1>CRACK SECTION</h1>
+            <p class="subtitle">Games & Software Cracks</p>100% Tested and Safe</span>
+            <div class="glow-line"></div>
+        </section>
+
+        <section class="crack-content">
+            <div class="games-grid" id="games-grid">
+                <!-- Placeholders for games/software (add your own here) -->
+                <!-- Example for 30 items (3 pages of 10) -->
+                <div class="game-card">
+                    <img src="images/logo5.jpg" alt="Game 1" class="game-thumb">
+                    <div class="game-info">
+                        <h3>Photoshop 2026 🎨</h3>
+                        <p>Version: 2026 • Size: 5.51GB</p>
+                        <a href="https://www.rootz.so/d/2HQ4zg" class="download-btn" target="_blank">Download</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="images/logo7.jpg" alt="Software 1" class="game-thumb">
+                    <div class="game-info">
+                        <h3>Premiere Pro (ALL VERSIONS) 🎥 </h3>
+                        <p>Version: 2019-2023 • Size: 8GB</p>
+                        <a href="https://drive.google.com/drive/u/0/folders/1MjKh6-hTa4msD54zWkokGo8GKNDOLzj0" class="download-btn" target="_blank">Download</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="images/logo8.jpg" alt="Software 1" class="game-thumb">
+                    <div class="game-info">
+                        <h3>After Effects (ALL VERSIONS) 🖥️ </h3>
+                        <p>Version: 2019-2023 • Size: 8GB</p>
+                        <a href="https://drive.google.com/drive/folders/1l3qlFTMbcYfVqv2RE5iS22s4eZax5Gbj" class="download-btn" target="_blank">Download</a>
+                    </div>
+                </div>
+                <!-- Repeat for 10 per page, add real thumbnails/links -->
+                <!-- For now, placeholders up to 30 (add more as needed) -->
+                <!-- ... (copy-paste similar divs for all items) -->
+            </div>
+
+            <div class="pagination" id="pagination">
+                <!-- JS will generate buttons here: Page 1, 2, 3... -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 FEARR – All rights reserved</p>
+    </footer>
+
+    <script>
+        // Simple JS for pagination (10 items per page)
+        const itemsPerPage = 10;
+        const grid = document.getElementById('games-grid');
+        const pagination = document.getElementById('pagination');
+        const items = grid.querySelectorAll('.game-card');
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+
+        function showPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            items.forEach((item, index) => {
+                item.style.display = (index >= start && index < end) ? 'block' : 'none';
+            });
+        }
+
+        function createPagination() {
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.textContent = `Page ${i}`;
+                btn.classList.add('page-btn');
+                btn.onclick = () => showPage(i);
+                pagination.appendChild(btn);
+            }
+        }
+
+        createPagination();
+        showPage(1);  // Show first page by default
+    </script>
+</body>
+</html>

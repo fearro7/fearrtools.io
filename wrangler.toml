@@ -1,0 +1,7 @@
+name = "fearr.github.io"
+compatibility_date = "2026-01-18"
+
+[site]
+bucket = "."           # le dossier racine du projet
+entry-point = "."
+
